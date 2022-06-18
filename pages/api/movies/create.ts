@@ -2,6 +2,10 @@ import MovieRepository from 'repositories/MovieRepository';
 import MovieModel from 'models/MovieModel';
 
 export default async function handler(req, res) {
+    if(req.method != 'POST') {
+        return res.status(405).end();
+    }
+
     let movie: MovieModel;
 
     try {

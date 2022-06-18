@@ -7,8 +7,16 @@ afterEach(() => {
     sinon.restore();
 })
 
+test("it should fail for non GET requests", async () => {
+    const req = httpMocks.createRequest({ method: 'POST' });
+    const res = httpMocks.createResponse();
+
+    await handler(req, res);
+    expect(res.statusCode).toBe(405);
+})
+
 test("it should fail if id parameter missing", async () => {
-    const req = httpMocks.createRequest();
+    const req = httpMocks.createRequest({ method: 'GET' });
     const res = httpMocks.createResponse();
 
     await handler(req, res);
@@ -19,7 +27,7 @@ test("it should fail if id parameter missing", async () => {
 test("it should fail if no movie was found for the given id", async () => {
     sinon.stub(MovieRepository, 'getMovie').returns(null);
 
-    const req = httpMocks.createRequest({ body: { id: 1 }});
+    const req = httpMocks.createRequest({ method: 'GET', body: { id: 1 }});
     const res = httpMocks.createResponse();
 
     await handler(req, res);
@@ -37,7 +45,7 @@ test('it should return a movie if thye given id is valid', async () => {
         rating: 9.9
     }
 
-    const req = httpMocks.createRequest({ body: { id: 1 }});
+    const req = httpMocks.createRequest({ method: 'GET', body: { id: 1 }});
     const res = httpMocks.createResponse();
 
     sinon.stub(MovieRepository, 'getMovie').returns(movie);
