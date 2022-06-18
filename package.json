@@ -19,7 +19,6 @@
     "jest": "^28.1.1",
     "knex": "^2.1.0",
     "next": "12.1.6",
-    "node-mocks-http": "^1.11.0",
     "objection": "^3.0.1",
     "pg": "^8.7.3",
     "react": "18.2.0",
@@ -31,5 +30,6 @@
     "eslint-config-next": "12.1.6",
     "ts-jest": "^28.0.5",
 	"sinon": "^14.0.0",
+	"node-mocks-http": "^1.11.0"
   }
 }
