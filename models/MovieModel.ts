@@ -11,4 +11,19 @@ export default class MovieModel extends Model {
     releaseYear: number;
     duration: number;
     rating: number;
+
+    static get jsonSchema() {
+        return {
+            type: 'object',
+            required: ['title', 'description', 'releaseYear', 'duration', 'rating'],
+            properties: {
+                id: { type: 'integer' },
+                title: { type: 'string', minLength: 1, maxLength: 255 },
+                description: { type: 'string', minLength: 1 },
+                releaseYear: { type: 'integer' },
+                duration: { type: 'integer' },
+                rating: { type: 'number' }
+            }
+        }
+    }
 }
