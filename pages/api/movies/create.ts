@@ -13,7 +13,7 @@ export default async function handler(req, res) {
         movie = MovieRepository.fromObject(req.body);
         movie = await MovieRepository.createMovie(movie);
 
-        return res.status(200).json(movie).end();
+        return res.status(200).json(movie);
     }
     catch(e) {
         if(e instanceof UniqueViolationError) {

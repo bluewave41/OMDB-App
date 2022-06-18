@@ -32,7 +32,7 @@ test('it should fail if id parameter missing', async () => {
     expect(res.statusCode).toBe(422);
 })
 
-test('it should return 204 is a valid id is provided', async () => {
+test('it should return 204 if a valid id is provided', async () => {
     sinon.stub(MovieRepository, 'deleteMovie').returns(true);
     const req = httpMocks.createRequest({ method: 'DELETE', body: { id: 1 }});
     const res = httpMocks.createResponse();

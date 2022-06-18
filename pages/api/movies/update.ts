@@ -13,7 +13,7 @@ export default async function handler(req, res) {
         movie = await MovieRepository.updateMovie(movie);
 
         if(!movie) {
-            return res.status(404).end();
+            return res.status(404);
         }
 
         return res.status(200).json(movie);

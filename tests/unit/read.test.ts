@@ -35,7 +35,7 @@ test("it should fail if no movie was found for the given id", async () => {
     expect(res._getData() == 'No movie found with that ID');
 })
 
-test('it should return a movie if thye given id is valid', async () => {
+test('it should return a movie if the given id is valid', async () => {
     const movie = {
         id: 1,
         title: 'Hello World',
