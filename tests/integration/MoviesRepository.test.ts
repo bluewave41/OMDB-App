@@ -70,6 +70,9 @@ test("it should get movies by title", async () => {
     //t should be 3
     movies = await MovieRepository.getMoviesByTitle('t');
     expect(movies.length).toBe(3);
+    //should find one even if word is in the middle
+    movies = await MovieRepository.getMoviesByTitle('sql');
+    expect(movies.length).toBe(1);
 })
 
 test("it should delete a movie", async () => {

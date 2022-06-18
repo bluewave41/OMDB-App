@@ -60,7 +60,6 @@ const Search = () => {
             <h1>Search</h1>
             <input type="text" onChange={onChange}></input>
             <button onClick={onSubmit}>Submit</button>
-            <button onClick={onCreate}>Create new movie</button>
 
             {movies.map(el => (
                 <Movie {...el} onLike={onLike} onDislike={onDislike} />

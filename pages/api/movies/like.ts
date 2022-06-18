@@ -12,6 +12,6 @@ export default async function handler(req, res) {
     }
     catch(e) {
         //TODO: better error message?
-        console.log(e);
+        return res.status(422).json(e.message);
     }
 }

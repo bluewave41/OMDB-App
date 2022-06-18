@@ -47,7 +47,7 @@ async function deleteMovie(id: number) {
 async function getMoviesByTitle(title: string) {
     return await MovieModel.query()
         .select()
-        .where('title', 'ILIKE', `${title}%`)  
+        .where('title', 'ILIKE', `%${title}%`)  
 }
 
 function fromObject(movieObject: object) {
