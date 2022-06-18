@@ -16,12 +16,12 @@ async function updateMovie(movie: MovieModel) {
         https://github.com/Vincit/objection.js/issues/965
     */
     return await MovieModel.query()
-        .patchAndFetch(movie);
+        .patchAndFetchById(movie.id, movie);
 }
 
 async function deleteMovie(id: number) {
-    await MovieModel.query().delete()
-        .where('movieId', id);
+    return await MovieModel.query().delete()
+        .where('id', id);
 }
 
 async function getMoviesByTitle(title: string) {

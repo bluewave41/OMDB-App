@@ -47,17 +47,8 @@ const Search = () => {
     const onCreate = async () => {
         let response;
 
-        const movie = {
-            id: 1,
-            title: 'test',
-            description: 'test',
-            releaseYear: 1995,
-            duration: 500,
-            rating: 9.7
-        }
-
         try {
-            response = await axios.post('/api/movies/create', { ...movie })
+            response = await axios.delete('/api/movies/delete', { data: { id: 1 }})
         }
         catch(e) {
 

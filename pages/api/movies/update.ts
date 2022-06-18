@@ -12,7 +12,11 @@ export default async function handler(req, res) {
         movie = MovieRepository.fromObject(req.body);
         movie = await MovieRepository.updateMovie(movie);
 
-        return res.status(200).json(movie).end();
+        if(!movie) {
+            return res.status(404).end();
+        }
+
+        return res.status(200).json(movie);
     }
     catch(e) {
         //TODO: make better error message?
