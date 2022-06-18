@@ -1,12 +1,13 @@
 import LikeModel from 'models/LikeModel';
 
-async function getLike(like: LikeModel) {
+async function getLike(ip: number, movieId: number) {
     return await LikeModel.query()
-        .findById(like.ip);
+        .findOne('ip', ip)
+        .findOne('movieId', movieId);
 }
 
 async function likeMovie(like: LikeModel) {
-    const fetchedLike = await getLike(like);
+    const fetchedLike = await getLike(like.ip, like.movieId);
     if(fetchedLike) {
         return await updateLike(like);
     }
@@ -33,4 +34,4 @@ function fromObject(likeObject: object, ip: number, liked: boolean) {
     });
 }
 
-export default { likeMovie, fromObject }
+export default { likeMovie, getLike, updateLike, fromObject }
