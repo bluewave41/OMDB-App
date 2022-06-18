@@ -44,11 +44,32 @@ const Search = () => {
         }
     }
 
+    const onCreate = async () => {
+        let response;
+
+        const movie = {
+            id: 1,
+            title: 'test',
+            description: 'test',
+            releaseYear: 1995,
+            duration: 500,
+            rating: 9.7
+        }
+
+        try {
+            response = await axios.post('/api/movies/create', { ...movie })
+        }
+        catch(e) {
+
+        }
+    }
+
     return (
         <div>
             <h1>Search</h1>
             <input type="text" onChange={onChange}></input>
             <button onClick={onSubmit}>Submit</button>
+            <button onClick={onCreate}>Create new movie</button>
 
             {movies.map(el => (
                 <Movie {...el} onLike={onLike} onDislike={onDislike} />

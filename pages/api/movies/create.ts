@@ -1,5 +1,6 @@
 import MovieRepository from 'repositories/MovieRepository';
 import MovieModel from 'models/MovieModel';
+import { UniqueViolationError } from 'objection';
 
 export default async function handler(req, res) {
     if(req.method != 'POST') {
@@ -15,6 +16,9 @@ export default async function handler(req, res) {
         return res.status(200).json(movie).end();
     }
     catch(e) {
+        if(e instanceof UniqueViolationError) {
+            return res.status(409).json('ID already exists.');
+        }
         //TODO: make better error message?
         return res.status(422).json(e.message);
     }
