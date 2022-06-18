@@ -9,4 +9,5 @@ module.exports = {
     "node_modules",
     __dirname
   ],
+  setupFilesAfterEnv: ["./tests/setupTests.js"]
 };
