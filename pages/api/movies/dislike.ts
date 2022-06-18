@@ -7,8 +7,8 @@ export default async function handler(req, res) {
 
     try {
         like = LikesRepository.fromObject(req.body, ip, false);
-        const addedLike = await LikesRepository.likeMovie(like);
-        return res.status(200).json(addedLike);
+        await LikesRepository.likeMovie(like);
+        return res.status(204).end();
     }
     catch(e) {
         //TODO: better error message?

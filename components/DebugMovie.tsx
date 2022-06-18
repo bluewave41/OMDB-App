@@ -1,4 +1,4 @@
-const Movie = (props) => {
+const DebugMovie = (props) => {
     return (
         <div>
             <div>{props.id}</div>
@@ -9,8 +9,10 @@ const Movie = (props) => {
             <div>{props.rating}</div>
             <button onClick={() => props.onLike(props.id)}>Like</button>
             <button onClick={() => props.onDislike(props.id)}>Dislike</button>
+            <button onClick={() => props.onDelete(props.id)}>Delete</button>
+            <button onClick={() => props.onHide(props.id)}>Hide</button>
         </div>
     )
 }
 
-export default Movie;
+export default DebugMovie;

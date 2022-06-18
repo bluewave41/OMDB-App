@@ -1,5 +1,10 @@
 import MovieModel from 'models/MovieModel';
 
+async function getAllMovies() {
+    return await MovieModel.query()
+        .select();
+}
+
 async function createMovie(movie: MovieModel) {
     return await MovieModel.query()
         .insert(movie);
@@ -34,4 +39,4 @@ function fromObject(movieObject: object) {
     return MovieModel.fromJson(movieObject);
 }
 
-export default { createMovie, getMovie, updateMovie, deleteMovie, fromObject, getMoviesByTitle }
+export default { getAllMovies, createMovie, getMovie, updateMovie, deleteMovie, fromObject, getMoviesByTitle }
