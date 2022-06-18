@@ -24,8 +24,14 @@ async function deleteMovie(id: number) {
         .where('movieId', id);
 }
 
+async function getMoviesByTitle(title: string) {
+    return await MovieModel.query()
+        .select()
+        .where('title', 'ILIKE', `${title}%`)  
+}
+
 function fromObject(movieObject: object) {
     return MovieModel.fromJson(movieObject);
 }
 
-export default { createMovie, getMovie, updateMovie, deleteMovie, fromObject }
+export default { createMovie, getMovie, updateMovie, deleteMovie, fromObject, getMoviesByTitle }
