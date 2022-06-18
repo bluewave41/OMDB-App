@@ -10,9 +10,30 @@ const Search = () => {
         setTitle(e.target.value);
     }
 
+    const onLike = async (movieId) => {
+        let response;
+
+        try {
+            response = await axios.post('/api/movies/like', { movieId });
+        }
+        catch(e) {
+
+        }
+    }
+
+    const onDislike = async (movieId) => {
+        let response;
+
+        try {
+            response = await axios.post('/api/movies/dislike', { movieId });
+        }
+        catch(e) {
+
+        }
+    }
+
     const onSubmit = async () => {
         let response;
-        console.log(title);
 
         try {
             response = await axios.post('/api/movies/search', { title });
@@ -30,7 +51,7 @@ const Search = () => {
             <button onClick={onSubmit}>Submit</button>
 
             {movies.map(el => (
-                <Movie {...el} />
+                <Movie {...el} onLike={onLike} onDislike={onDislike} />
             ))}
         </div>
     )

@@ -1,12 +1,14 @@
 const Movie = (props) => {
     return (
         <div>
-            <p>{props.id}</p>
-            <p>{props.title}</p>
-            <p>{props.description}</p>
-            <p>{props.releaseYear}</p>
-            <p>{props.duration}</p>
-            <p>{props.rating}</p>
+            <div>{props.id}</div>
+            <div>{props.title}</div>
+            <div>{props.description}</div>
+            <div>{props.releaseYear}</div>
+            <div>{props.duration}</div>
+            <div>{props.rating}</div>
+            <button onClick={() => props.onLike(props.id)}>Like</button>
+            <button onClick={() => props.onDislike(props.id)}>Like</button>
         </div>
     )
 }
