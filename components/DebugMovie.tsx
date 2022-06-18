@@ -1,6 +1,7 @@
 const DebugMovie = (props) => {
+    console.log(props);
     return (
-        <div>
+        <div style={{ color: props.liked == null ? 'black' : props.liked ? 'green' : 'red' }}>
             <div>{props.id}</div>
             <div>{props.title}</div>
             <div>{props.description}</div>

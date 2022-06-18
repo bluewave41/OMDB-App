@@ -1,6 +1,7 @@
 //https://dev.to/tylerlwsmith/using-a-typescript-interface-to-define-model-properties-in-objection-js-1231
 
 import { Model } from 'objection';
+import LikeModel from 'models/LikeModel';
 
 export default class MovieModel extends Model {
     static tableName = "movies";
@@ -23,6 +24,19 @@ export default class MovieModel extends Model {
                 releaseYear: { type: 'integer' },
                 duration: { type: 'integer' },
                 rating: { type: 'number' }
+            }
+        }
+    }
+
+    static get relationMappings() {
+        return {
+            liked: {
+                relation: Model.HasOneRelation,
+                modelClass: LikeModel,
+                join: {
+                    from: 'movies.id',
+                    to: 'likes.movieId'
+                }
             }
         }
     }

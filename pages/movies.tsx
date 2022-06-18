@@ -14,17 +14,17 @@ const Movies = (props) => {
             response = await axios.post('/api/movies/create', { ...movie });
             setMovies([...movies, movie]);
         }
-        catch(e) {}
+        catch (e) { }
     }
 
     const onDelete = async (movieId) => {
         let response;
 
         try {
-            response = await axios.delete('/api/movies/delete', { data: {id: movieId }});
+            response = await axios.delete('/api/movies/delete', { data: { id: movieId } });
             setMovies(movies.filter(el => el.id != movieId));
         }
-        catch(e) {}
+        catch (e) { }
     }
 
     const onLike = async (movieId) => {
@@ -32,39 +32,59 @@ const Movies = (props) => {
 
         try {
             response = await axios.post('/api/movies/like', { movieId });
-        }
-        catch(e) {
 
+            setMovies(prevState => {
+                const newState = prevState.map(el => {
+                    if (el.id === movieId) {
+                        return { ...el, liked: true };
+                    }
+                    return el;
+                });
+
+                return newState;
+            });
         }
+        catch (e) {}
+    }    
+
+const onDislike = async (movieId) => {
+    let response;
+
+    try {
+        response = await axios.post('/api/movies/dislike', { movieId });
+
+        setMovies(prevState => {
+            const newState = prevState.map(el => {
+                if (el.id === movieId) {
+                    return { ...el, liked: false };
+                }
+                return el;
+            });
+
+            return newState;
+        });
     }
+    catch (e) {
 
-    const onDislike = async (movieId) => {
-        let response;
-
-        try {
-            response = await axios.post('/api/movies/dislike', { movieId });
-        }
-        catch(e) {
-
-        }
     }
+}
 
-    const onHide = async (movieId) => {
-        setMovies(movies.filter(el => el.id != movieId));
-    }
+const onHide = async (movieId) => {
+    setMovies(movies.filter(el => el.id != movieId));
+}
 
-    return (
-        <div>
-            {movies.map(el => (
-                <DebugMovie {...el} onDelete={onDelete} onLike={onLike} onDislike={onDislike} onHide={onHide} />
-            ))}
-            <CreateMovieBox onCreate={onCreate} />
-        </div>
-    )
+return (
+    <div>
+        {movies.map(el => (
+            <DebugMovie {...el} onDelete={onDelete} onLike={onLike} onDislike={onDislike} onHide={onHide} />
+        ))}
+        <CreateMovieBox onCreate={onCreate} />
+    </div>
+)
 }
 
 export async function getServerSideProps(context) {
-    const movies = await MovieRepository.getAllMovies();
+    const movies = await MovieRepository.getAllMoviesWithSingleUserLikes(context.req.socket.remoteAddress.replace(/\D/g, ''));
 
     return {
         props: {

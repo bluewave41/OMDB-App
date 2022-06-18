@@ -5,6 +5,21 @@ async function getAllMovies() {
         .select();
 }
 
+async function getAllMoviesWithSingleUserLikes(ip: number) {
+    const movies = await MovieModel.query()
+        .select()
+        .withGraphFetched('liked')
+        .modifyGraph('liked', builder => {
+            builder.select('liked')
+                .findOne('ip', ip)
+        })
+
+    //not entirely sure how to fix this right now
+    movies.forEach(el => el.liked = el.liked?.liked);
+
+    return movies;
+}
+
 async function createMovie(movie: MovieModel) {
     return await MovieModel.query()
         .insert(movie);
@@ -39,4 +54,4 @@ function fromObject(movieObject: object) {
     return MovieModel.fromJson(movieObject);
 }
 
-export default { getAllMovies, createMovie, getMovie, updateMovie, deleteMovie, fromObject, getMoviesByTitle }
+export default { getAllMovies, createMovie, getMovie, updateMovie, deleteMovie, fromObject, getMoviesByTitle, getAllMoviesWithSingleUserLikes }

@@ -23,7 +23,9 @@ async function createLike(like: LikeModel) {
 
 async function updateLike(like: LikeModel) {
     return await LikeModel.query()
-        .patchAndFetchById(like.ip, like);
+        .patch({ liked: like.liked })
+        .where('ip', like.ip)
+        .where('movieId', like.movieId);
 }
 
 function fromObject(likeObject: object, ip: number, liked: boolean) {
