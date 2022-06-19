@@ -61,15 +61,12 @@ test("it should update a movie", async () => {
 
 test("it should get movies by title", async () => {
     await knex.seed.run();
-    //the should be 2
     let movies = await MovieRepository.getMoviesByTitle('the');
-    expect(movies.length).toBe(2);
-    //hello should be 2
+    expect(movies.length).toBe(3);
     movies = await MovieRepository.getMoviesByTitle('hello');
     expect(movies.length).toBe(2);
-    //t should be 3
     movies = await MovieRepository.getMoviesByTitle('t');
-    expect(movies.length).toBe(3);
+    expect(movies.length).toBe(4);
     //should find one even if word is in the middle
     movies = await MovieRepository.getMoviesByTitle('sql');
     expect(movies.length).toBe(1);

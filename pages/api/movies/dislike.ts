@@ -2,6 +2,10 @@ import LikeModel from 'models/LikeModel';
 import LikesRepository from 'repositories/LikesRepository';
 
 export default async function handler(req, res) {
+    if(req.method != 'POST') {
+        return res.status(405).end();
+    }
+    
     let like: LikeModel;
     const ip = parseInt(req.socket.remoteAddress.replace(/\D/g, ''));
 

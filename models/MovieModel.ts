@@ -12,6 +12,7 @@ export default class MovieModel extends Model {
     releaseYear: number;
     duration: number;
     rating: number;
+    liked: any;
 
     static get jsonSchema() {
         return {
