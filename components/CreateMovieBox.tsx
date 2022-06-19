@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 const CreateMovieBox = (props) => {
     const [movie, setMovie] = useState({
+        id: 1,
         title: '',
         description: '',
         releaseYear: 0,
@@ -18,6 +19,7 @@ const CreateMovieBox = (props) => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
+            <input type="number" name="id" onChange={onChange} placeholder='ID' />
             <input type="text" name="title" onChange={onChange} placeholder='Title' />
             <input type="text" name="description" onChange={onChange}  placeholder='Description' />
             <input type="number" name="releaseYear" onChange={onChange}  placeholder='Release Year' />
