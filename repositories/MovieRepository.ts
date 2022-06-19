@@ -14,7 +14,6 @@ async function getAllMoviesWithSingleUserLikes(ip: number) {
                 .findOne('ip', ip)
         })
 
-    //not entirely sure how to fix this right now
     movies.forEach(el => el.liked = el.liked?.liked);
 
     return movies;
