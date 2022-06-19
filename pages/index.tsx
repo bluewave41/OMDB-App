@@ -5,8 +5,8 @@ const Home = (props) => {
         <div>
             <h1>Landing Page</h1>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <Link href='/movies'><a href='/movies'>&gt; Movies</a></Link>
-                <Link href='/search'><a href='/search'>&gt; Search</a></Link>
+                <Link href='/movies'><a>&gt; Movies</a></Link>
+                <Link href='/search'><a>&gt; Search</a></Link>
             </div>
         </div>
     )

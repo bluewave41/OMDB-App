@@ -62,7 +62,7 @@ const Search = () => {
             <button onClick={onSubmit}>Submit</button>
 
             {movies.map(el => (
-                <Movie {...el} onLike={onLike} onDislike={onDislike} />
+                <Movie key={el.title} {...el} onLike={onLike} onDislike={onDislike} />
             ))}
         </div>
     )

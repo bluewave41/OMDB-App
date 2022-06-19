@@ -76,7 +76,7 @@ const onHide = async (movieId) => {
 return (
     <div>
         {movies.map(el => (
-            <DebugMovie {...el} onDelete={onDelete} onLike={onLike} onDislike={onDislike} onHide={onHide} />
+            <DebugMovie key={el.title} {...el} onDelete={onDelete} onLike={onLike} onDislike={onDislike} onHide={onHide} />
         ))}
         <CreateMovieBox onCreate={onCreate} />
     </div>
