@@ -1,5 +1,7 @@
 OMDB App
 
+Live version: http://143.110.226.4:25790/
+
 This is the backend for an OMDB app that allows the creation of and modification of movies via a REST API.
 
 Libraries used:
