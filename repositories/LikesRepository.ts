@@ -1,6 +1,6 @@
 import LikeModel from 'models/LikeModel';
 
-async function getLike(ip: number, movieId: number) {
+async function getLike(ip: string, movieId: number) {
     return await LikeModel.query()
         .findOne('ip', ip)
         .findOne('movieId', movieId);
@@ -28,7 +28,7 @@ async function updateLike(like: LikeModel) {
         .where('movieId', like.movieId);
 }
 
-function fromObject(likeObject: object, ip: number, liked: boolean) {
+function fromObject(likeObject: object, ip: string, liked: boolean) {
     return LikeModel.fromJson({
         ...likeObject,
         ip,

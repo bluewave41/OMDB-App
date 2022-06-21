@@ -4,7 +4,7 @@ import knex from 'lib/Database';
 it('should create and get a like', async () => {
     await knex.seed.run();
 
-    const like = LikesRepository.fromObject({ movieId: 1 }, 19216801, true);
+    const like = LikesRepository.fromObject({ movieId: 1 }, '192.168.0.1', true);
 
     await LikesRepository.likeMovie(like);
 
@@ -17,7 +17,7 @@ it('should create and get a like', async () => {
 it('should update a like if one exists', async () => {
     await knex.seed.run();
 
-    let like = LikesRepository.fromObject({ movieId: 1 }, 19216801, true);
+    let like = LikesRepository.fromObject({ movieId: 1 }, '192.168.0.1', true);
 
     await LikesRepository.likeMovie(like);
 

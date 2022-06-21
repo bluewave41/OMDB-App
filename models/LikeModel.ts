@@ -6,7 +6,7 @@ export default class LikeModel extends Model {
     static tableName = "likes";
     static idColumn = 'ip';
 
-    ip: number;
+    ip: string;
     movieId: number;
     liked: boolean;
 
@@ -16,7 +16,7 @@ export default class LikeModel extends Model {
             type: 'object',
             required: ['ip', 'movieId', 'liked'],
             properties: {
-                ip: { type: 'integer' },
+                ip: { type: 'string' },
                 movieId: { type: 'integer' },
                 liked: { type: 'boolean' }
             }

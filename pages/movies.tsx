@@ -84,7 +84,7 @@ return (
 }
 
 export async function getServerSideProps(context) {
-    const movies = await MovieRepository.getAllMoviesWithSingleUserLikes(context.req.socket.remoteAddress.replace(/\D/g, ''));
+    const movies = await MovieRepository.getAllMoviesWithSingleUserLikes(context.req.socket.remoteAddress);
 
     return {
         props: {

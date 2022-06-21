@@ -5,7 +5,13 @@ import sinon from 'sinon';
 
 const ipObject = {
     socket: {
-        remoteAddress: '19216801'
+        remoteAddress: '192.168.0.1'
+    }
+}
+
+const longIpObject = {
+    socket: {
+        remoteAddress: '192.168.100.152'
     }
 }
 
@@ -38,6 +44,19 @@ test('it should return 204 if valid data passed', async () => {
         liked: true
     }
     const req = httpMocks.createRequest({ ...ipObject, method: 'POST', body: { ...like }});
+    const res = httpMocks.createResponse();
+    sinon.stub(LikesRepository, 'likeMovie').returns(null);
+
+    await handler(req, res);
+    expect(res.statusCode).toBe(204);
+})
+
+test('it should return 204 if IP is large', async () => {
+    const like = {
+        movieId: 1,
+        liked: true
+    }
+    const req = httpMocks.createRequest({ ...longIpObject, method: 'POST', body: { ...like }});
     const res = httpMocks.createResponse();
     sinon.stub(LikesRepository, 'likeMovie').returns(null);
 

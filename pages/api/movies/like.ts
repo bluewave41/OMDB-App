@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     }
 
     let like: LikeModel;
-    const ip = parseInt(req.socket.remoteAddress.replace(/\D/g, ''));
+    const ip = req.socket.remoteAddress;
 
     try {
         like = LikesRepository.fromObject(req.body, ip, true);
